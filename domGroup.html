@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Shopping List</title>
+  <link href="domGroup.css" type="text/css" rel="stylesheet" />
+</head>
+<h1>Fruit and Vegetables</h1>
+
+<body>
+  <input type="text" id="listInput" />
+  <button type="submit" id="addItem" onclick="addItemToList()">Add Fruit or Vegetable to List</button>
+
+  <ol id="Items">
+    <!-- <li>Tomatoes</li> <button type="submit" onclick="deleteItemFromList()">Delete First Item</button>
+    <li>Cucumber</li> <button type="submit" onclick="deleteItemFromList()">Delete Second Item</button>
+    <li>Avocadoes</li> <button type="submit" onclick="deleteItemFromList()">Delete Third Item</button>
+    <li>Apples</li> <button type="submit" onclick="deleteItemFromList()">Delete Fourth Item</button>
+    <li>Kiwis</li> <button type="submit" onclick="deleteItemFromList()">Delete Fifth Item</button> -->
+  </ol>
+
+  <script>
+    var List = document.getElementById('Items');
+    var listArray = [];
+
+    function addItemToList() {
+      console.log('call function');
+      var fruitAndVeg = document.getElementById('listInput').value;
+      listArray.push(fruitAndVeg);
+      var newEntry = document.createElement('li');
+      newEntry.appendChild(document.createTextNode(fruitAndVeg));
+      newEntry.setAttribute('id', 'item' + listArray.length);
+      var removeButton = document.createElement('button');
+      removeButton.appendChild(document.createTextNode("remove"));
+      removeButton.setAttribute('onClick', 'removeItem('' + 'item' + listArray.length + '')');
+      newEntry.appendChild(removeButton);
+
+
+      List.appendChild(newEntry);
+
+    }
+
+    function removeItem(itemId) {
+      var item = document.getElementById(itemId);
+      var itemValue = document.getElementById(itemId).value;
+      List.removeChild(item);
+      listArray.pop(itemvalue);
+    }
+
+
+  </script>
+</body>
+
+</html>
